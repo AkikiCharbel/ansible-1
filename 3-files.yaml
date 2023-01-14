@@ -1,0 +1,14 @@
+- name: "create files"
+  hosts: "web"
+  become: true
+  vars: 
+    filecontent: "hello devops"
+  tasks:
+    - name: "manage all files"
+      copy:
+        content: "{{ filecontent }}"
+        dest: "{{ item }}"
+      loop:
+        - "/tmp/myfile1"
+        - "/tmp/myfile2"
+        - "/tmp/anotherfile"
