@@ -6,9 +6,12 @@
   tasks:
     - name: "manage all files"
       copy:
-        content: "{{ filecontent }}"
-        dest: "{{ item }}"
+        content: "{{ item.text }}"
+        dest: "{{ item.name }}"
       loop:
-        - "/tmp/myfile1"
-        - "/tmp/myfile2"
-        - "/tmp/anotherfile"
+        - name: "/tmp/myfile1"
+          text: "hiii hello"
+        - name: "/tmp/myfile2"
+          text: "hello 2"
+        - name: "/tmp/anotherfile"
+          text: "hello 3"

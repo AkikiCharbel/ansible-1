@@ -1,0 +1,23 @@
+- name: "create files"
+  hosts: "db"
+  # become: true
+  tasks:
+    - name: "print ansible variable"
+      debug: 
+        msg: "The hostname for web is {{ ansible_facts['hostname'] }}"
+    
+    - name: "print PATH env variable"
+      debug:  
+        msg: "The ENV for web is {{ ansible_env['PATH'] }}"    
+    
+    - name: "print the default ipv4"
+      debug:  
+        msg: "The default IPV4 address for web is {{ ansible_default_ipv4['address'] }}"    
+    
+    - name: "print FQDN variable"
+      debug:  
+        msg: "The FQDN for web is {{ ansible_fqdn }}"
+
+    - name: "print processors number"
+      debug:  
+        msg: "The Total Number of processors for web is {{ ansible_processor_count }}"

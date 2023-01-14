@@ -1,0 +1,24 @@
+- name: "exercise"
+  hosts: "all"
+  become: true
+  vars: 
+    allowed: "yes"
+    web: "ip-172-31-63-228"
+  tasks: 
+    - name: "install finger on all hosts"
+      apt:
+        name: "finger"
+    - name: "add user on web if allowed"
+      user: 
+        name: "{{item}}"
+      when: allowed == "yes" and ansible_hostname == web
+      notify: "print message"
+      loop:
+        - bob
+        - charlie
+        - alice
+
+  handlers:
+    - name: "print message"
+      debug: 
+        msg: "hello world"

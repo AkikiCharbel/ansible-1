@@ -1,0 +1,13 @@
+- name: "demonstrate handlers"
+  hosts: "db"
+  become: true
+  tasks: 
+    - name: "create BOB user"
+      user: 
+        name: "bob"
+        # state: "absent"
+      notify: "print Bob message"
+  handlers:
+    - name: "print Bob message"
+      debug: 
+        msg: "Bob user is managed"
