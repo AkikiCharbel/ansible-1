@@ -1,0 +1,17 @@
+- name: setup webserver on all instances
+  hosts: all
+  become: true
+  vars:
+    teamname: "Team A"
+    project: "top secret"
+  tasks:
+    - name: install apache2
+      apt: 
+        name: apache2
+        state: present
+        update_cache: yes
+    - name: deploy template
+      template:
+        src: template.j2
+        dest: /var/www/html/index.html
+    
