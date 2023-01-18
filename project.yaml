@@ -52,14 +52,14 @@
       src: /tmp/wordpress.zip
       dest: /var/www/html
       remote_src: yes
-  # - name: Configure WordPress
-  #   template:
-  #     src: wp-config.php.j2
-  #     dest: /var/www/html/wp-config.php
-  #   vars:
-  #     wp_tem_db_name: "{{ wp_db_name }}"
-  #     wp_tem_db_user: "{{ wp_db_user }}"
-  #     wp_tem_db_password: "{{ wp_db_password }}"
+  - name: Configure WordPress
+    template:
+      src: wp-config.php.j2
+      dest: /var/www/html/wp-config.php
+    vars:
+      wp_tem_db_name: "{{ wp_db_name }}"
+      wp_tem_db_user: "{{ wp_db_user }}"
+      wp_tem_db_password: "{{ wp_db_password }}"
   - name: Start Apache Web Server
     service:
       name: apache2
