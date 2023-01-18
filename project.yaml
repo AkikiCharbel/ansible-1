@@ -26,6 +26,7 @@
       - php-mysql
       - php-xml
       - php-zip
+      - python3
   - name: Create MySQL database and user
     mysql_user:
       name: "{{ db_user }}"
