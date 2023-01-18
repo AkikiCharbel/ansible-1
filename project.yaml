@@ -47,7 +47,7 @@
   - name: Download WordPress
     fetch:
       src: https://wordpress.org/latest.zip
-      dest: /tmp/wordpress.zip
+      dest: /tmp/wordpress-6.1.1.zip
   - name: Extract WordPress
     unarchive:
       src: /tmp/wordpress.zip
