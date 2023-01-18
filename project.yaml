@@ -49,7 +49,7 @@
       dest: /wordpress.zip
   - name: Extract WordPress
     unarchive:
-      src: /wordpress.zip
+      src: /home/labsuser/wordpress.zip
       dest: /var/www/html
   - name: Configure WordPress
     template:
