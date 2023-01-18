@@ -56,7 +56,6 @@
     template:
       src: wp-config.php.j2
       dest: /var/www/html/wp-config.php
-      remote_src: yes
     vars:
       wp_tem_db_name: "{{ wp_db_name }}"
       wp_tem_db_user: "{{ wp_db_user }}"
