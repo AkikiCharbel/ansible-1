@@ -46,10 +46,10 @@
   - name: Download WordPress
     get_url:
       url: https://wordpress.org/latest.zip
-      dest: wordpress.zip
+      dest: /wordpress.zip
   - name: Extract WordPress
     unarchive:
-      src: wordpress.zip
+      src: /wordpress.zip
       dest: /var/www/html
   - name: Configure WordPress
     template:
