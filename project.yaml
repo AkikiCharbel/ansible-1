@@ -40,7 +40,7 @@
       priv: "{{ db_name }}.*:ALL"
       state: present
       login_user: root
-      login_password: ''
+      login_password: 
       host: localhost
 
   - name: Download WordPress
