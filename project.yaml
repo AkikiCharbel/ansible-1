@@ -1,5 +1,5 @@
 - name: Install WordPress and dependencies
-  hosts: all
+  hosts: db
   become: yes
   vars:
     wp_version: 6.1.1
@@ -35,7 +35,6 @@
       login_user: root
       login_password: rootpassword
       host: localhost
-      db: "{{ db_name }}"
 
   - name: Download WordPress
     get_url:
