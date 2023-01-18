@@ -1,0 +1,66 @@
+- name: Install WordPress and dependencies
+  hosts: all
+  become: yes
+  vars:
+    wp_version: 6.1.1
+    db_name: wp_project
+    db_user: wp_project
+    db_password: wp_project
+  tasks:
+  - name: Check and install required packages
+    apt:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - apache2
+      - ghostscript
+      - libapache2-mod-php
+      - mysql-server
+      - php
+      - php-bcmath
+      - php-curl
+      - php-imagick
+      - php-intl
+      - php-json
+      - php-mbstring
+      - php-mysql
+      - php-xml
+      - php-zip
+  - name: Create MySQL database and user
+    mysql_db:
+      name: "{{ db_name }}"
+      state: present
+      login_user: root
+      login_password: rootpassword
+    mysql_user:
+      name: "{{ db_user }}"
+      password: "{{ db_password }}"
+      priv: "{{ db_name }}.*:ALL"
+      state: present
+  - name: Download WordPress
+    get_url:
+      url: https://wordpress.org/wordpress-{{ wp_version }}.tar.gz
+      dest: /tmp/wordpress.tar.gz
+  - name: Extract WordPress
+    unarchive:
+      src: /tmp/wordpress.tar.gz
+      dest: /var/www/html
+  - name: Configure WordPress
+    template:
+      src: wp-config.php.j2
+      dest: /var/www/html/wp-config.php
+    vars:
+      db_name: "{{ db_name }}"
+      db_user: "{{ db_user }}"
+      db_password: "{{ db_password }}"
+  - name: Start Apache Web Server
+    service:
+      name: apache2
+      state: started
+  - name: Print server IP address
+    debug:
+      msg: "Server IP address is {{ ansible_default_ipv4.address }}"
+  - name: Validate installation
+    uri:
+      url: http://{{ ansible_default_ipv4.address }}
+      status_code: 200
