@@ -1,0 +1,8 @@
+- name: "set user with password"
+  hosts: all
+  become: true
+  tasks:
+    - name: create user with password
+      user:
+        name: alice
+        password: "password"
