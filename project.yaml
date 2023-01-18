@@ -47,10 +47,10 @@
   - name: Download WordPress
     fetch:
       src: https://wordpress.org/latest.zip
-      dest: /tmp/wordpress-6.1.1.zip
+      dest: /home/labsuser/Downloads/wordpress.zip
   - name: Extract WordPress
     unarchive:
-      src: /tmp/wordpress.zip
+      src: /home/labsuser/Downloads/wordpress.zip
       dest: /var/www/html
   - name: Configure WordPress
     template:
