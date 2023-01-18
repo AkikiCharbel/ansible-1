@@ -43,10 +43,9 @@
       login_password: ""
       login_unix_socket: /var/run/mysqld/mysqld.sock
       host: localhost
-
   - name: Download WordPress
-    fetch:
-      src: https://wordpress.org/latest.zip
+    get_url:
+      url: https://wordpress.org/latest.zip
       dest: /tmp/wordpress.zip
   - name: Extract WordPress
     unarchive:
